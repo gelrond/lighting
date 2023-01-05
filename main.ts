@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 // ********************************************************************************************************************
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { DungeonGenerator } from './code/dungeon/dungeon-generator';
 // ********************************************************************************************************************
 
 // ********************************************************************************************************************
@@ -30,6 +31,13 @@ const sun = new THREE.DirectionalLight('#fff0e0', 1.0);
 sun.position.z = -100; sun.position.y = 64;
 
 scene.add(sun);
+
+// ********************************************************************************************************************
+// dungeon
+// ********************************************************************************************************************
+const dungeon = new DungeonGenerator(32);
+
+const parts = dungeon.generate();
 
 // ********************************************************************************************************************
 // initialise
@@ -63,7 +71,5 @@ function update() {
     requestAnimationFrame(update);
 
     renderer.render(scene, camera);
-
-    updateOcean();
 }
 initialise();

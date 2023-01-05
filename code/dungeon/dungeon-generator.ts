@@ -1,20 +1,32 @@
 // ********************************************************************************************************************
+import { IGenerator } from "../generators/generator.interface";
 // ********************************************************************************************************************
-import { IModifier } from "./modifier.interface";
+import { DungeonPart } from "./dungeon-part";
 // ********************************************************************************************************************
-export abstract class Modifier<_TSource, _TTarget> implements IModifier<_TSource, _TTarget> {
+import { DungeonPartRoom } from "./dungeon-part-room";
+// ********************************************************************************************************************
+export class DungeonGenerator implements IGenerator<DungeonPart[]> {
 
     // ****************************************************************************************************************
     // constructor
     // ****************************************************************************************************************
-    constructor() { }
+    constructor(public readonly elements: number = 32) { }
 
     // ****************************************************************************************************************
-    // function:    modify
+    // function:    generate
     // ****************************************************************************************************************
-    // parameters:  source - the source
+    // parameters:  n/a
     // ****************************************************************************************************************
-    // returns:     the target
+    // returns:     the parts
     // ****************************************************************************************************************
-    public abstract modify(source: _TSource): _TTarget;
+    public generate(): DungeonPart[] {
+
+        var parts: DungeonPart[] = [];
+
+        var root = new DungeonPartRoom();
+
+        parts.push(root);
+
+        return parts;
+    }
 }
